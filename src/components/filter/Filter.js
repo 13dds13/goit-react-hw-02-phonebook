@@ -35,6 +35,7 @@ const Filter = ({
                   <span className={styles.number}>{item.number}</span>
                 </p>
                 <button
+                  className={styles.btn}
                   name={item.name}
                   type="button"
                   onClick={() => deleteContact(item.name)}

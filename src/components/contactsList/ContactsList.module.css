@@ -1,15 +1,7 @@
-.wrap {
-  display: flex;
-  flex-direction: column;
+ul.listWrap {
+  /* margin: 14px; */
   width: 320px;
-  height: 80px;
   padding: 16px;
-  border: 1px solid #252525;
-}
-
-.listWrap {
-  margin-top: 20px;
-  padding: 12px;
   border: 1px solid #252525;
 }
 
@@ -20,6 +12,11 @@
   height: 32px;
 }
 
+.btn {
+  font-size: 12px;
+  cursor: pointer;
+}
+
 .name {
   font-weight: 500;
 }
@@ -27,9 +24,4 @@
 .number {
   margin-left: 8px;
   color: rgba(0, 0, 0, 0.7);
-}
-
-.btn {
-  font-size: 12px;
-  cursor: pointer;
 }
