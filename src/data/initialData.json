@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Homer",
+    "number": "4856987"
+  },
+  {
+    "id": 2,
+    "name": "Marge",
+    "number": "648546"
+  },
+  {
+    "id": 3,
+    "name": "Bart",
+    "number": "759584"
+  },
+  {
+    "id": 4,
+    "name": "Lisa",
+    "number": "7951320"
+  },
+  {
+    "id": 5,
+    "name": "Maggie",
+    "number": "635455"
+  },
+  {
+    "id": 6,
+    "name": "Abe",
+    "number": "999999"
+  }
+]

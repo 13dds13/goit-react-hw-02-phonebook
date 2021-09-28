@@ -1,42 +1,10 @@
 import React, { Component } from "react";
 import { nanoid } from "nanoid";
-
-const tempData = [
-  {
-    id: 1,
-    name: "Homer",
-    number: "4856987",
-  },
-  {
-    id: 2,
-    name: "Marge",
-    number: "648546",
-  },
-  {
-    id: 3,
-    name: "Bart",
-    number: "759584",
-  },
-  {
-    id: 4,
-    name: "Lisa",
-    number: "7951320",
-  },
-  {
-    id: 5,
-    name: "Maggie",
-    number: "635455",
-  },
-  {
-    id: 6,
-    name: "Abe",
-    number: "000000",
-  },
-];
+import INITIAL_DATA from "../data/initialData.json";
 
 class App extends Component {
   state = {
-    contacts: tempData,
+    contacts: INITIAL_DATA,
     filter: "",
     name: "",
     number: "",
@@ -48,6 +16,14 @@ class App extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    if (
+      this.state.contacts.find(
+        (item) => item.name.toLowerCase() === this.state.name.toLowerCase()
+      )
+    ) {
+      alert(`${this.state.name} is already in contacts`);
+      return;
+    }
     this.setState((prev) => ({
       contacts: [
         ...prev.contacts,
@@ -106,15 +82,6 @@ class App extends Component {
           <button type="submit">Add to contacts</button>
         </form>
         <h2>Contacts</h2>
-        {/* <ul>
-          {this.state.contacts.map(item => (
-            <li key={item.id}>
-              <p>
-                {item.name}: <span>{item.number}</span>{' '}
-              </p>
-            </li>
-          ))}
-        </ul> */}
         <label htmlFor={this.findContactId}>Find contacts by name</label>
         <input
           id={this.findContactId}
@@ -127,7 +94,7 @@ class App extends Component {
           onChange={this.handleChange}
           value={this.state.filter}
         />
-        {this.state.filter && (
+        {this.state.filter ? (
           <ul>
             {this.state.contacts
               .filter((item) =>
@@ -140,6 +107,7 @@ class App extends Component {
                     {item.name}: {item.number}
                   </p>
                   <button
+                    name={item.name}
                     type="button"
                     onClick={() => this.deleteContact(item.name)}
                   >
@@ -147,6 +115,23 @@ class App extends Component {
                   </button>
                 </li>
               ))}
+          </ul>
+        ) : (
+          <ul>
+            {this.state.contacts.map((item) => (
+              <li key={item.id}>
+                <p>
+                  {item.name}: <span>{item.number}</span>{" "}
+                </p>
+                <button
+                  name={item.name}
+                  type="button"
+                  onClick={() => this.deleteContact(item.name)}
+                >
+                  Delete
+                </button>
+              </li>
+            ))}
           </ul>
         )}
       </>
