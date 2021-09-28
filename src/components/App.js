@@ -12,8 +12,6 @@ class App extends Component {
     filter: "",
   };
 
-  findContactId = nanoid();
-
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
@@ -58,8 +56,11 @@ class App extends Component {
     return (
       <div className={styles.container}>
         <h2 className={styles.title}>Phonebook</h2>
+
         <ContactForm handleSubmit={this.handleSubmit} />
+
         <h2 className={styles.title}>Contacts</h2>
+
         <Filter
           contacts={contacts}
           filter={filter}
@@ -67,6 +68,7 @@ class App extends Component {
           deleteContact={this.deleteContact}
           findContactId={this.findContactId}
         />
+
         <ContactsList
           contacts={contacts}
           filter={filter}

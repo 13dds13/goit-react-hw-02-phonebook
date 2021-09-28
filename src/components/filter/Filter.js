@@ -1,14 +1,10 @@
 import React from "react";
+import { nanoid } from "nanoid";
 import PropTypes from "prop-types";
 import styles from "./Filter.module.css";
 
-const Filter = ({
-  findContactId,
-  deleteContact,
-  handleChange,
-  filter,
-  contacts,
-}) => {
+const Filter = ({ handleChange, filter }) => {
+  const findContactId = nanoid();
   return (
     <div className={styles.wrap}>
       <label htmlFor={findContactId}>Find contact by name: </label>
@@ -23,39 +19,13 @@ const Filter = ({
         onChange={handleChange}
         value={filter}
       />
-      {filter && (
-        <ul className={styles.listWrap}>
-          {contacts
-            .filter((item) => item.name.toLowerCase().includes(filter))
-            .map((item) => (
-              <li className={styles.listItem} key={item.id}>
-                {" "}
-                <p className={styles.name}>
-                  {item.name}:{" "}
-                  <span className={styles.number}>{item.number}</span>
-                </p>
-                <button
-                  className={styles.btn}
-                  name={item.name}
-                  type="button"
-                  onClick={() => deleteContact(item.name)}
-                >
-                  Delete
-                </button>
-              </li>
-            ))}
-        </ul>
-      )}
     </div>
   );
 };
 
 Filter.propTypes = {
-  findContactId: PropTypes.string,
-  deleteContact: PropTypes.func,
   handleChange: PropTypes.func,
   filter: PropTypes.string,
-  contacts: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default Filter;

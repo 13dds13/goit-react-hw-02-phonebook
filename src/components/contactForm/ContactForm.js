@@ -3,6 +3,8 @@ import { nanoid } from "nanoid";
 import PropTypes from "prop-types";
 import { form, btn, input } from "./ContactForm.module.css";
 
+// const INITIAL_STATE = { name: "", number: "" };
+
 class ContactForm extends Component {
   state = {
     name: "",
@@ -16,6 +18,10 @@ class ContactForm extends Component {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
+
+  // handleClick = (e) => {
+  //   this.setState({ ...INITIAL_STATE });
+  // };
 
   render() {
     const { name, number } = this.state;
@@ -47,7 +53,11 @@ class ContactForm extends Component {
           onChange={this.handleChange}
           value={number}
         />
-        <button className={btn} type="submit">
+        <button
+          className={btn}
+          type="submit"
+          // onClick={this.handleClick}
+        >
           Add to contacts
         </button>
       </form>
