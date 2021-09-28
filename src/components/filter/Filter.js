@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styles from "./Filter.module.css";
 
 const Filter = ({
   findContactId,
@@ -9,8 +10,8 @@ const Filter = ({
   contacts,
 }) => {
   return (
-    <>
-      <label htmlFor={findContactId}>Find contacts by name</label>
+    <div className={styles.wrap}>
+      <label htmlFor={findContactId}>Find contact by name: </label>
       <input
         id={findContactId}
         type="text"
@@ -23,14 +24,15 @@ const Filter = ({
         value={filter}
       />
       {filter && (
-        <ul>
+        <ul className={styles.listWrap}>
           {contacts
             .filter((item) => item.name.toLowerCase().includes(filter))
             .map((item) => (
-              <li key={item.id}>
+              <li className={styles.listItem} key={item.id}>
                 {" "}
-                <p>
-                  {item.name}: {item.number}
+                <p className={styles.name}>
+                  {item.name}:{" "}
+                  <span className={styles.number}>{item.number}</span>
                 </p>
                 <button
                   name={item.name}
@@ -43,7 +45,7 @@ const Filter = ({
             ))}
         </ul>
       )}
-    </>
+    </div>
   );
 };
 
