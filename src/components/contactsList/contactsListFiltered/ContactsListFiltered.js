@@ -38,7 +38,7 @@ ContactsListFiltered.propTypes = {
   styles: PropTypes.objectOf(PropTypes.string),
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
       name: PropTypes.string,
       number: PropTypes.string,
     })
