@@ -4,6 +4,7 @@ import INITIAL_DATA from "../data/initialData.json";
 import ContactForm from "./contactForm/ContactForm";
 import Filter from "./filter/Filter";
 import ContactsList from "./contactsList/ContactsList";
+import styles from "./container/Container.module.css";
 
 class App extends Component {
   state = {
@@ -55,10 +56,10 @@ class App extends Component {
   render() {
     const { contacts, filter } = this.state;
     return (
-      <div>
-        <h2>Phonebook</h2>
+      <div className={styles.container}>
+        <h2 className={styles.title}>Phonebook</h2>
         <ContactForm handleSubmit={this.handleSubmit} />
-        <h2>Contacts</h2>
+        <h2 className={styles.title}>Contacts</h2>
         <Filter
           contacts={contacts}
           filter={filter}
