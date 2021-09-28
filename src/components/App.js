@@ -61,13 +61,7 @@ class App extends Component {
 
         <h2 className={styles.title}>Contacts</h2>
 
-        <Filter
-          contacts={contacts}
-          filter={filter}
-          handleChange={this.handleChange}
-          deleteContact={this.deleteContact}
-          findContactId={this.findContactId}
-        />
+        <Filter filter={filter} handleChange={this.handleChange} />
 
         <ContactsList
           contacts={contacts}

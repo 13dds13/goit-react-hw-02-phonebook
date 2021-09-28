@@ -21,6 +21,9 @@ const ContactsList = ({ contacts, filter, deleteContact }) => {
   );
 };
 
+//? Возможно есть смысле проверить все пропсы тут и
+//? не дублировать похожий код в последующий компонентах?
+
 ContactsList.propTypes = {
   deleteContact: PropTypes.func,
   filter: PropTypes.string,
