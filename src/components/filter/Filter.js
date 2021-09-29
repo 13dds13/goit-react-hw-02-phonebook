@@ -2,12 +2,13 @@ import React from "react";
 import { nanoid } from "nanoid";
 import PropTypes from "prop-types";
 import styles from "./Filter.module.css";
+import { inputSearch } from "../../data/dataUI.json";
 
 const Filter = ({ handleChange, filter }) => {
   const findContactId = nanoid();
   return (
     <div className={styles.wrap}>
-      <label htmlFor={findContactId}>Find contact by name: </label>
+      <label htmlFor={findContactId}>{inputSearch}</label>
       <input
         id={findContactId}
         type="text"

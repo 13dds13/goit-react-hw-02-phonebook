@@ -2,32 +2,24 @@ import React, { Component } from "react";
 import { nanoid } from "nanoid";
 import PropTypes from "prop-types";
 import { form, btn, input } from "./ContactForm.module.css";
+import { inputName, inputTel, submitBtn } from "../../data/dataUI.json";
+
+const INITIAL_DATA = {
+  name: "",
+  number: "",
+};
 
 class ContactForm extends Component {
-  state = {
-    name: "",
-    number: "",
-  };
+  state = { ...INITIAL_DATA };
 
   nameId = nanoid();
   numberId = nanoid();
 
-  // removeLastLetter = (value) => {
-  //   const currentStateValue = this.state[value];
-
-  //   if (!currentStateValue) {
-  //     return;
-  //   }
-  //   const shorterStr = currentStateValue.slice(0, -1);
-  //   this.setState({ [value]: shorterStr });
-  //   this.removeLastLetter(value);
-  // };
-
   submitAndReset = (e) => {
     e.preventDefault();
-    this.props.handleSubmit(e);
-    this.setState({ name: "", number: "" });
-    // this.removeLastLetter("name");
+    const contactData = this.state;
+    this.props.handleSubmit(contactData);
+    this.setState({ ...INITIAL_DATA });
   };
 
   handleChange = (e) => {
@@ -39,7 +31,7 @@ class ContactForm extends Component {
     const { name, number } = this.state;
     return (
       <form className={form} onSubmit={this.submitAndReset}>
-        <label htmlFor={this.nameId}>Enter name:</label>
+        <label htmlFor={this.nameId}>{inputName}</label>
         <input
           className={input}
           id={this.nameId}
@@ -52,7 +44,7 @@ class ContactForm extends Component {
           onChange={this.handleChange}
           value={name}
         />
-        <label htmlFor={this.numberId}>Enter number:</label>
+        <label htmlFor={this.numberId}>{inputTel}</label>
         <input
           className={input}
           id={this.numberId}
@@ -66,7 +58,7 @@ class ContactForm extends Component {
           value={number}
         />
         <button className={btn} type="submit">
-          Add to contacts
+          {submitBtn}
         </button>
       </form>
     );

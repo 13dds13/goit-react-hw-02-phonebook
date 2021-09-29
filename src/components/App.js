@@ -5,6 +5,9 @@ import ContactForm from "./contactForm/ContactForm";
 import Filter from "./filter/Filter";
 import ContactsList from "./contactsList/ContactsList";
 import styles from "./container/Container.module.css";
+import dataUI from "../data/dataUI.json";
+
+const { alertMsg, allContacts, search, titleMain, titleSecondary } = dataUI;
 
 class App extends Component {
   state = {
@@ -17,17 +20,15 @@ class App extends Component {
     this.setState({ [name]: value });
   };
 
-  handleSubmit = (e) => {
-    const { name, number } = e.target;
-    const newName = name.value;
-    const newNumber = number.value;
+  handleSubmit = (contactData) => {
+    const { name, number } = contactData;
 
     const isAlreadyInContacts = this.state.contacts.find(
-      ({ name }) => name.toLowerCase() === newName.toLowerCase()
+      (item) => item.name.toLowerCase() === name.toLowerCase()
     );
 
     if (isAlreadyInContacts) {
-      alert(`${newName} is already in contacts`);
+      alert(`${name} ${alertMsg}`);
       return;
     }
 
@@ -35,9 +36,9 @@ class App extends Component {
       contacts: [
         ...prev.contacts,
         {
-          name: newName,
+          name,
           id: nanoid(),
-          number: newNumber,
+          number,
         },
       ],
     }));
@@ -50,21 +51,31 @@ class App extends Component {
     this.setState({ contacts: [...filteredContacts] });
   };
 
+  contactsToRender = ({ contacts, filter }) => {
+    if (!filter) return { contacts, title: `${allContacts}` };
+
+    const filteredContacts = contacts.filter((item) =>
+      item.name.toLowerCase().includes(filter.toLowerCase())
+    );
+
+    return { contacts: filteredContacts, title: `${search}` };
+  };
+
   render() {
-    const { contacts, filter } = this.state;
+    const { container, title } = styles;
+    const { filter } = this.state;
     return (
-      <div className={styles.container}>
-        <h2 className={styles.title}>Phonebook</h2>
+      <div className={container}>
+        <h2 className={title}>{titleMain}</h2>
 
         <ContactForm handleSubmit={this.handleSubmit} />
 
-        <h2 className={styles.title}>Contacts</h2>
+        <h2 className={title}>{titleSecondary}</h2>
 
         <Filter filter={filter} handleChange={this.handleChange} />
 
         <ContactsList
-          contacts={contacts}
-          filter={filter}
+          contactsDataToRender={this.contactsToRender(this.state)}
           deleteContact={this.deleteContact}
         />
       </div>
