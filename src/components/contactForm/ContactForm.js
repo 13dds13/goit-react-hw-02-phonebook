@@ -3,8 +3,6 @@ import { nanoid } from "nanoid";
 import PropTypes from "prop-types";
 import { form, btn, input } from "./ContactForm.module.css";
 
-// const INITIAL_STATE = { name: "", number: "" };
-
 class ContactForm extends Component {
   state = {
     name: "",
@@ -14,19 +12,21 @@ class ContactForm extends Component {
   nameId = nanoid();
   numberId = nanoid();
 
+  submitAndReset = (e) => {
+    e.preventDefault();
+    this.props.handleSubmit(e);
+    this.setState({ name: "", number: "" });
+  };
+
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
 
-  // handleClick = (e) => {
-  //   this.setState({ ...INITIAL_STATE });
-  // };
-
   render() {
     const { name, number } = this.state;
     return (
-      <form className={form} onSubmit={this.props.handleSubmit}>
+      <form className={form} onSubmit={this.submitAndReset}>
         <label htmlFor={this.nameId}>Enter name:</label>
         <input
           className={input}
@@ -53,11 +53,7 @@ class ContactForm extends Component {
           onChange={this.handleChange}
           value={number}
         />
-        <button
-          className={btn}
-          type="submit"
-          // onClick={this.handleClick}
-        >
+        <button className={btn} type="submit">
           Add to contacts
         </button>
       </form>

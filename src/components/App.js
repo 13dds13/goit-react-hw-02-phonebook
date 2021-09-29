@@ -18,7 +18,6 @@ class App extends Component {
   };
 
   handleSubmit = (e) => {
-    e.preventDefault();
     const { name, number } = e.target;
     const newName = name.value;
     const newNumber = number.value;
