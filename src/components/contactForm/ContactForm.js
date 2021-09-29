@@ -12,10 +12,22 @@ class ContactForm extends Component {
   nameId = nanoid();
   numberId = nanoid();
 
+  // removeLastLetter = (value) => {
+  //   const currentStateValue = this.state[value];
+
+  //   if (!currentStateValue) {
+  //     return;
+  //   }
+  //   const shorterStr = currentStateValue.slice(0, -1);
+  //   this.setState({ [value]: shorterStr });
+  //   this.removeLastLetter(value);
+  // };
+
   submitAndReset = (e) => {
     e.preventDefault();
     this.props.handleSubmit(e);
     this.setState({ name: "", number: "" });
+    // this.removeLastLetter("name");
   };
 
   handleChange = (e) => {

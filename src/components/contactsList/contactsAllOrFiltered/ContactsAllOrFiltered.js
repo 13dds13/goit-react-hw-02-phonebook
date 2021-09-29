@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const ContactsListFiltered = ({ filter, styles, contacts, deleteContact }) => {
+const ContactsAllOrFiltered = ({ filter, styles, contacts, deleteContact }) => {
   return (
     <>
-      <p>Search results:</p>
+      {filter ? <p>Search results:</p> : <p>All contacts:</p>}
       <ul className={styles.listWrap}>
         {contacts
           .filter((item) =>
@@ -32,7 +32,7 @@ const ContactsListFiltered = ({ filter, styles, contacts, deleteContact }) => {
   );
 };
 
-ContactsListFiltered.propTypes = {
+ContactsAllOrFiltered.propTypes = {
   filter: PropTypes.string,
   deleteContact: PropTypes.func,
   styles: PropTypes.objectOf(PropTypes.string),
@@ -45,4 +45,4 @@ ContactsListFiltered.propTypes = {
   ),
 };
 
-export default ContactsListFiltered;
+export default ContactsAllOrFiltered;

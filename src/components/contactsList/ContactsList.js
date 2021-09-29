@@ -1,18 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./ContactsList.module.css";
-import ContactsListFull from "./contactsListFull/ContactsListFull";
-import ContactsListFiltered from "./contactsListFiltered/ContactsListFiltered";
+import ContactsAllOrFiltered from "./contactsAllOrFiltered/ContactsAllOrFiltered";
 
 const ContactsList = ({ contacts, filter, deleteContact }) => {
-  return !filter ? (
-    <ContactsListFull
-      deleteContact={deleteContact}
-      contacts={contacts}
-      styles={styles}
-    />
-  ) : (
-    <ContactsListFiltered
+  return (
+    <ContactsAllOrFiltered
       deleteContact={deleteContact}
       contacts={contacts}
       filter={filter}
@@ -20,9 +13,6 @@ const ContactsList = ({ contacts, filter, deleteContact }) => {
     />
   );
 };
-
-//? Возможно есть смысле проверить все пропсы тут и
-//? не дублировать похожий код в последующих компонентах?
 
 ContactsList.propTypes = {
   deleteContact: PropTypes.func,
