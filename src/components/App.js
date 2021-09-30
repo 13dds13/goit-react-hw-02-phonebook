@@ -80,7 +80,6 @@ class App extends Component {
 
         <ContactForm
           dataUI={{ inputName, inputTel, submitBtn }}
-          handleSubmit={this.handleSubmit}
           addNewContact={this.addNewContact}
         />
 

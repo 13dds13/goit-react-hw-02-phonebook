@@ -72,7 +72,6 @@ class ContactForm extends Component {
 }
 
 ContactForm.propTypes = {
-  handleSubmit: PropTypes.func,
   addNewContact: PropTypes.func,
   dataUI: PropTypes.shape({
     inputName: PropTypes.string,
