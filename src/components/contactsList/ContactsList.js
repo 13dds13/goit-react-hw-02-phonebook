@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { deleteBtn, noSearchResult } from "../../data/dataUI.json";
 import styles from "./ContactsList.module.css";
 
 const { listWrap, listItem, name, number, btn } = styles;
@@ -8,6 +7,7 @@ const { listWrap, listItem, name, number, btn } = styles;
 const ContactsList = ({
   contactsDataToRender: { title, contacts },
   deleteContact,
+  dataUI: { deleteBtn, noSearchResult },
 }) => {
   return contacts.length ? (
     <>
@@ -47,6 +47,10 @@ ContactsList.propTypes = {
         number: PropTypes.string,
       })
     ),
+  }),
+  dataUI: PropTypes.shape({
+    deleteBtn: PropTypes.string,
+    noSearchResult: PropTypes.string,
   }),
 };
 

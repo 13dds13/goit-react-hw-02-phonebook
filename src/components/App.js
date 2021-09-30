@@ -7,7 +7,19 @@ import ContactsList from "./contactsList/ContactsList";
 import styles from "./container/Container.module.css";
 import dataUI from "../data/dataUI.json";
 
-const { alertMsg, allContacts, search, titleMain, titleSecondary } = dataUI;
+const {
+  alertMsg,
+  allContacts,
+  search,
+  titleMain,
+  titleSecondary,
+  inputName,
+  inputTel,
+  submitBtn,
+  deleteBtn,
+  inputSearch,
+  noSearchResult,
+} = dataUI;
 
 class App extends Component {
   state = {
@@ -68,15 +80,23 @@ class App extends Component {
       <div className={container}>
         <h2 className={title}>{titleMain}</h2>
 
-        <ContactForm handleSubmit={this.handleSubmit} />
+        <ContactForm
+          dataUI={{ inputName, inputTel, submitBtn }}
+          handleSubmit={this.handleSubmit}
+        />
 
         <h2 className={title}>{titleSecondary}</h2>
 
-        <Filter filter={filter} handleChange={this.handleChange} />
+        <Filter
+          inputSearch={inputSearch}
+          filter={filter}
+          handleChange={this.handleChange}
+        />
 
         <ContactsList
           contactsDataToRender={this.contactsToRender(this.state)}
           deleteContact={this.deleteContact}
+          dataUI={{ deleteBtn, noSearchResult }}
         />
       </div>
     );

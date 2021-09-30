@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { nanoid } from "nanoid";
 import PropTypes from "prop-types";
 import { form, btn, input } from "./ContactForm.module.css";
-import { inputName, inputTel, submitBtn } from "../../data/dataUI.json";
 
 const INITIAL_DATA = {
   name: "",
@@ -29,6 +28,7 @@ class ContactForm extends Component {
 
   render() {
     const { name, number } = this.state;
+    const { inputName, inputTel, submitBtn } = this.props.dataUI;
     return (
       <form className={form} onSubmit={this.submitAndReset}>
         <label htmlFor={this.nameId}>{inputName}</label>
@@ -67,6 +67,11 @@ class ContactForm extends Component {
 
 ContactForm.propTypes = {
   handleSubmit: PropTypes.func,
+  dataUI: PropTypes.shape({
+    inputName: PropTypes.string,
+    inputTel: PropTypes.string,
+    submitBtn: PropTypes.string,
+  }),
 };
 
 export default ContactForm;
