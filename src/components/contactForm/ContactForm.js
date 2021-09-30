@@ -14,23 +14,29 @@ class ContactForm extends Component {
   nameId = nanoid();
   numberId = nanoid();
 
-  submitAndReset = (e) => {
-    e.preventDefault();
-    const contactData = this.state;
-    this.props.handleSubmit(contactData);
-    this.setState({ ...INITIAL_DATA });
-  };
-
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
+  };
+
+  resetStateData = () => {
+    this.setState({ ...INITIAL_DATA });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { name, number } = this.state;
+
+    this.props.addNewContact(name, number);
+
+    this.resetStateData();
   };
 
   render() {
     const { name, number } = this.state;
     const { inputName, inputTel, submitBtn } = this.props.dataUI;
     return (
-      <form className={form} onSubmit={this.submitAndReset}>
+      <form className={form} onSubmit={this.handleSubmit}>
         <label htmlFor={this.nameId}>{inputName}</label>
         <input
           className={input}
@@ -67,6 +73,7 @@ class ContactForm extends Component {
 
 ContactForm.propTypes = {
   handleSubmit: PropTypes.func,
+  addNewContact: PropTypes.func,
   dataUI: PropTypes.shape({
     inputName: PropTypes.string,
     inputTel: PropTypes.string,

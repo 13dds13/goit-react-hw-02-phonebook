@@ -32,9 +32,7 @@ class App extends Component {
     this.setState({ [name]: value });
   };
 
-  handleSubmit = (contactData) => {
-    const { name, number } = contactData;
-
+  addNewContact = (name, number) => {
     const isAlreadyInContacts = this.state.contacts.find(
       (item) => item.name.toLowerCase() === name.toLowerCase()
     );
@@ -75,7 +73,7 @@ class App extends Component {
 
   render() {
     const { container, title } = styles;
-    const { filter } = this.state;
+
     return (
       <div className={container}>
         <h2 className={title}>{titleMain}</h2>
@@ -83,13 +81,14 @@ class App extends Component {
         <ContactForm
           dataUI={{ inputName, inputTel, submitBtn }}
           handleSubmit={this.handleSubmit}
+          addNewContact={this.addNewContact}
         />
 
         <h2 className={title}>{titleSecondary}</h2>
 
         <Filter
           inputSearch={inputSearch}
-          filter={filter}
+          filter={this.state.filter}
           handleChange={this.handleChange}
         />
 
